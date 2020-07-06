@@ -19,11 +19,12 @@ getRnSp <- function(n = 1000) {
   #continent <- indices$continent   # returns the continent (6 continent model)
   continent <- as.character(indices$REGION)   # returns the continent (7 continent model)
   rn.coord <- rn.sp@coords
-  
-  return(cbind.data.frame(rn.coord, continent))
+  id <- paste("Samp", 1:n)
+  return(cbind.data.frame(id, rn.coord, continent))
 }
 
 rn.coord <- getRnSp(1e4)
+
 
 plot(
   rn.coord$x,
