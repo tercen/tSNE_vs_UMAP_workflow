@@ -29,7 +29,6 @@ getRnSp <- function(n = 1000) {
 
 rn.coord <- getRnSp(1e4)
 
-
 plot(
   rn.coord$x,
   rn.coord$y,
@@ -39,4 +38,8 @@ plot(
   ylab = "Latitude"
 )
 
-write.csv(rn.coord, file = "rn.coordinates.csv", quote = FALSE, row.names = FALSE)
+write.csv(rn.coord, file = "rn_coordinates_10k.csv", quote = FALSE, row.names = FALSE)
+rn.coord <- getRnSp(1e3)
+write.csv(rn.coord, file = "rn_coordinates_1k.csv", quote = FALSE, row.names = FALSE)
+rn.coord <- getRnSp(1e2)
+write.csv(rn.coord, file = "rn_coordinates_100.csv", quote = FALSE, row.names = FALSE)
