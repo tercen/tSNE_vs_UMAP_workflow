@@ -5,8 +5,12 @@ library(rgdal)
 library(raster) 
 library(rworldmap)
 
+
 getRnSp <- function(n = 1000) {  
-  countriesSP <- rworldmap::getMap(resolution='low')
+  # countriesSP <- rworldmap::getMap(resolution='low')
+  ct <- st_read("data/continent.shp")
+  ct2 <- as(ct, Class = "Spatial")
+  
   rn.sp <- spsample(countriesSP, n = n, type = "random")
   
   # converting points to a SpatialPoints object
@@ -17,7 +21,7 @@ getRnSp <- function(n = 1000) {
   indices = over(rn.sp, countriesSP)
   
   #continent <- indices$continent   # returns the continent (6 continent model)
-  continent <- as.character(indices$REGION)   # returns the continent (7 continent model)
+  continent <- as.character(indices$CONTINENT)   # returns the continent (7 continent model)
   rn.coord <- rn.sp@coords
   id <- paste("Samp", 1:n)
   return(cbind.data.frame(id, rn.coord, continent))
